@@ -10,8 +10,6 @@ public class Player_Input_Controller : MonoBehaviour {
 
     public GameObject player;
     public GameObject guest;
-    public GameObject widthField;
-    public GameObject heightField;
     public int CharVel;
 
 
@@ -28,16 +26,14 @@ public class Player_Input_Controller : MonoBehaviour {
         var playerHor = player.transform.position.x;
         var guestVert = guest.transform.position.y;
         var guestHor = guest.transform.position.x;
-        var halfHeight = heightField.GetComponent<Renderer>().bounds.size.y / 2;
-        var halfWidth = widthField.GetComponent<Renderer>().bounds.size.x /2;
-        Debug.Log(halfWidth);
+        var halfHeight = Screen.height/34.1/ 2;
+        var halfWidth = Screen.width/34.1/ 2;
 
         if (Input.GetKey(KeyCode.UpArrow)
             && playerVert < halfHeight)
         {
             //move the bat up
             player.GetComponent<Rigidbody>().velocity = new Vector3(0f, CharVel, 0f);
-            Debug.Log(player.transform.position.y);
         }
         else if (Input.GetKey(KeyCode.DownArrow)
                  && playerVert > -halfHeight)
