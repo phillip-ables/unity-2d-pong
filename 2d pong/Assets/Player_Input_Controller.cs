@@ -8,6 +8,10 @@ public class Player_Input_Controller : MonoBehaviour {
     //player 1 => controls guest with W/S ksys
     //player 2 => controls player with arrow keys
 
+    public GameObject player;
+    public GameObject guest;
+
+
 	// Use this for initialization
 	void Start () {
 		
