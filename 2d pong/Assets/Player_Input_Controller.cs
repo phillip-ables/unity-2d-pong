@@ -12,33 +12,48 @@ public class Player_Input_Controller : MonoBehaviour {
     public GameObject guest;
     public GameObject widthField;
     public GameObject heightField;
+    public int CharVel;
 
 
 	// Use this for initialization
 	void Start () {
-
-    }
-	
-	// Update is called once per frame
-	void Update () { 
-        var CharVel = 10f;
         
-        if (Input.GetKey(KeyCode.UpArrow))
+    }
+
+    // Update is called once per frame
+    void Update () {
+        //i want this in the start up menu
+        var CharVel = 10f;
+        var playerVert = player.transform.position.y;
+        var playerHor = player.transform.position.x;
+        var guestVert = guest.transform.position.y;
+        var guestHor = guest.transform.position.x;
+        var halfHeight = heightField.GetComponent<Renderer>().bounds.size.y / 2;
+        var halfWidth = widthField.GetComponent<Renderer>().bounds.size.x /2;
+        Debug.Log(halfWidth);
+
+        if (Input.GetKey(KeyCode.UpArrow)
+            && playerVert < halfHeight)
         {
             //move the bat up
             player.GetComponent<Rigidbody>().velocity = new Vector3(0f, CharVel, 0f);
+            Debug.Log(player.transform.position.y);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow)
+                 && playerVert > -halfHeight)
         {
             //move the bat down
             player.GetComponent<Rigidbody>().velocity = new Vector3(0f, -CharVel, 0f);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) 
+                 && playerHor > 0 )
         {
             //move the bat left
             player.GetComponent<Rigidbody>().velocity = new Vector3(-CharVel, 0f, 0f);
+
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow)
+                 && playerHor < halfWidth)
         {
             //move the bat right
             player.GetComponent<Rigidbody>().velocity = new Vector3(CharVel, 0f, 0f);
@@ -50,22 +65,26 @@ public class Player_Input_Controller : MonoBehaviour {
 
 
         //if guest is pressing the w key
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)
+             && guestVert < halfHeight)
         {
             //move the bat up
             guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, CharVel, 0f);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) 
+                 && guestVert > -halfHeight)
         {
             //move the bat down
             guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, -CharVel, 0f);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) 
+                 && guestHor > -halfWidth)
         {
             //move the bat left
             guest.GetComponent<Rigidbody>().velocity = new Vector3(-CharVel, 0f, 0f);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) 
+             && guestHor < 0)
         {
             //move the bat right
             guest.GetComponent<Rigidbody>().velocity = new Vector3(CharVel, 0f, 0f);
