@@ -15,11 +15,35 @@ public class Player_Input_Controller : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        //if guest is pressing the w key
+        if (Input.GetKey(KeyCode.W))
+        {
+            //move the bat up
+            
+            Debug.Log("Guest is pressing W");
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            //move the bat down
+
+            Debug.Log("Guest is pressing S");
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            //move the bat left
+
+            Debug.Log("Guest is pressing A");
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            //move the bat right
+
+            Debug.Log("Guest is pressing D");
+        }
+        //if guest is pressing the s key
+    }
 }
