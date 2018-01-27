@@ -10,6 +10,8 @@ public class Player_Input_Controller : MonoBehaviour {
 
     public GameObject player;
     public GameObject guest;
+    public GameObject widthField;
+    public GameObject heightField;
 
 
 	// Use this for initialization
@@ -18,53 +20,60 @@ public class Player_Input_Controller : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-
-        //player.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-        //if player is pressing the w key
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+	void Update () { 
+        var CharVel = 10f;
+        
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             //move the bat up
-            player.GetComponent<Rigidbody>().velocity = new Vector3(0f, 1f, 0f);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0f, CharVel, 0f);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             //move the bat down
-            player.GetComponent<Rigidbody>().velocity = new Vector3(0f, -1f, 0f);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0f, -CharVel, 0f);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             //move the bat left
-            player.GetComponent<Rigidbody>().velocity = new Vector3(-1f, 0f, 0f);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(-CharVel, 0f, 0f);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             //move the bat right
-            player.GetComponent<Rigidbody>().velocity = new Vector3(1f, 0f, 0f);
+            player.GetComponent<Rigidbody>().velocity = new Vector3(CharVel, 0f, 0f);
+        }
+        else
+        {
+            player.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
 
 
-        //guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         //if guest is pressing the w key
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             //move the bat up
-            guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, 1f, 0f);
+            guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, CharVel, 0f);
         }
-        else if (Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             //move the bat down
-            guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, -1f, 0f);
+            guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, -CharVel, 0f);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             //move the bat left
-            guest.GetComponent<Rigidbody>().velocity = new Vector3(-1f, 0f, 0f);
+            guest.GetComponent<Rigidbody>().velocity = new Vector3(-CharVel, 0f, 0f);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             //move the bat right
-            guest.GetComponent<Rigidbody>().velocity = new Vector3(1f, 0f, 0f);
+            guest.GetComponent<Rigidbody>().velocity = new Vector3(CharVel, 0f, 0f);
         }
+        else
+        {
+            guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        }
+
     }
 }
