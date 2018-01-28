@@ -16,17 +16,16 @@ public class Player_Input_Controller : MonoBehaviour {
     public object halfWidth;
     public void screenJump()
     {
-        Camera.main.orthographicSize = Random.Range(2, 8);
-        Debug.Log("New Camera Orthographics: "+Camera.main.orthographicSize);
+        Camera.main.orthographicSize = Random.Range(3, 10);
 
         iterateSet();
         screenJumpCount = 0;
-        halfHeight = Screen.height / 34.1 / 2;
-        halfWidth = Screen.width / 34.1 / 2;
+
     }
     public void iterateSet()
     {
-        var randomIterate = Random.Range(10, 1000000000000);
+        var randomIterate = Random.Range(100000000, 100000000000000000);
+        Debug.Log("random number " + randomIterate);
     }
 
 
@@ -43,11 +42,12 @@ public class Player_Input_Controller : MonoBehaviour {
         var playerHor = player.transform.position.x;
         var guestVert = guest.transform.position.y;
         var guestHor = guest.transform.position.x;
-        var halfHeight = Screen.height/34.1/ 2;
-        var halfWidth = Screen.width / 34.1 / 2;
         var randomIterate = 10;
+        Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 screenOrigo = Camera.main.ScreenToWorldPoint(Vector2.zero);
+        var halfWidth = screenBounds.x;
+        var halfHeight = screenBounds.y;
 
-        Debug.Log("Random Ieterate: "+randomIterate);
 
         /*
          * counter which increments everytime a button is keyed
@@ -55,7 +55,7 @@ public class Player_Input_Controller : MonoBehaviour {
          * call screenSizeJump to randomly set the width and height
          * sets new increment value
          */
-         if(screenJumpCount >= randomIterate)
+        if ((screenJumpCount)/10 >= randomIterate)
         {
             screenJump();
         }
@@ -87,7 +87,6 @@ public class Player_Input_Controller : MonoBehaviour {
         else
         {
             player.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-            Debug.Log("Current ScreenJump Count: "+screenJumpCount);
         }
 
 
@@ -119,7 +118,6 @@ public class Player_Input_Controller : MonoBehaviour {
         else
         {
             guest.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-            Debug.Log("Current Jump Count: " + screenJumpCount);
         }
 
     }
