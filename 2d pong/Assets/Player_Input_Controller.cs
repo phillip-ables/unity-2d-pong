@@ -16,8 +16,7 @@ public class Player_Input_Controller : MonoBehaviour {
     public object halfWidth;
     public void screenJump()
     {
-        Camera.main.orthographicSize = Random.Range(3, 10);
-
+        Camera.main.orthographicSize = Random.Range(2, 10);
         iterateSet();
         screenJumpCount = 0;
 
@@ -25,13 +24,11 @@ public class Player_Input_Controller : MonoBehaviour {
     public void iterateSet()
     {
         var randomIterate = Random.Range(100000000, 100000000000000000);
-        Debug.Log("random number " + randomIterate);
     }
 
 
     // Use this for initialization
     void Start () {
-        Debug.Log("Camera Orthographics: "+Camera.main.orthographicSize);
     }
 
     // Update is called once per frame
@@ -44,7 +41,6 @@ public class Player_Input_Controller : MonoBehaviour {
         var guestHor = guest.transform.position.x;
         var randomIterate = 10;
         Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        Vector2 screenOrigo = Camera.main.ScreenToWorldPoint(Vector2.zero);
         var halfWidth = screenBounds.x;
         var halfHeight = screenBounds.y;
 
@@ -58,6 +54,24 @@ public class Player_Input_Controller : MonoBehaviour {
         if ((screenJumpCount)/10 >= randomIterate)
         {
             screenJump();
+        }
+        Debug.Log("Player.x : " + playerHor);
+        Debug.Log("Bounds: " + halfWidth);
+        if (playerHor > halfWidth)
+        {
+            var pos = player.transform.position;
+            pos.x = screenBounds.x;
+            player.transform.position = pos;
+            //upper corner
+            //player.transform.position.x = screenBounds.x;
+
+            //Unexpected symbol `,', expecting `)'
+            //player.transform.position = (halfWidth, player.transform.position.x);
+
+            //No overload for method `Set' takes `2' arguments
+            //player.transform.position.Set(halfWidth, playerHor);
+            //playerHor = halfWidth;
+
         }
 
         if (Input.GetKey(KeyCode.UpArrow)
